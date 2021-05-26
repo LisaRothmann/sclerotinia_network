@@ -20,14 +20,22 @@ library(ggthemes)
 # data
 ```{r}
 scl.sm <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1-bCNbueVD-9tLurdJAHW-SkV3slUs3ash4tXenhY-Zc/edit?usp=sharing")
+
+scl.sm<-scl.sm %>% 
+  mutate(asdate = case_when(
+                            Date == "18 August 2020" ~ as.Date("08/18/2020", format='%m/%d/%Y'),
+                            Date == "10 September 2020" ~ as.Date("09/10/2020", format='%m/%d/%Y'),
+                            Date == "5 November 2020" ~ as.Date("11/5/2020", format='%m/%d/%Y'),
+                            Date == "24 February 2021" ~ as.Date("02/24/2021", format='%m/%d/%Y'),
+                            Date == "25 May 2021" ~ as.Date("05/25/2021", format='%m/%d/%Y')))
 ```
 
 ```{r}
 scl.sm %>% 
 ggplot +
-  geom_point(aes(Date, Followers, color = Platform), size = 5)+
-  geom_line(aes(Date, Followers, color = Platform, group = Platform), size = 2)+
+  geom_point(aes(asdate, Followers, color = Platform), size = 5)+
+  geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 2)+
   theme_clean(base_size =14)+
-  ggsave("vis/sm_trends.jpeg", units = "cm", width = 14, height = 7)
+  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 21, height = 7)
 ```
 
