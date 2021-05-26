@@ -1,0 +1,33 @@
+---
+title: "social_media_presence"
+author: "Lisa Rothmann"
+date: "26/05/2021"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#library
+
+```{r}
+library(tidyverse)
+library(gsheet)
+library(ggthemes)
+```
+
+# data
+```{r}
+scl.sm <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1-bCNbueVD-9tLurdJAHW-SkV3slUs3ash4tXenhY-Zc/edit?usp=sharing")
+```
+
+```{r}
+scl.sm %>% 
+ggplot +
+  geom_point(aes(Date, Followers, color = Platform), size = 5)+
+  geom_line(aes(Date, Followers, color = Platform, group = Platform), size = 2)+
+  theme_clean(base_size =14)+
+  ggsave("vis/sm_trends.jpeg", units = "cm", width = 14, height = 7)
+```
+
