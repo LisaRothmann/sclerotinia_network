@@ -28,7 +28,8 @@ scl.sm<-scl.sm %>%
                             Date == "5 November 2020" ~ as.Date("11/5/2020", format='%m/%d/%Y'),
                             Date == "24 February 2021" ~ as.Date("02/24/2021", format='%m/%d/%Y'),
                             Date == "25 May 2021" ~ as.Date("05/25/2021", format='%m/%d/%Y'),
-                            Date == "24 August 2021" ~ as.Date("08/24/2021", format='%m/%d/%Y')))
+                            Date == "24 August 2021" ~ as.Date("08/24/2021", format='%m/%d/%Y'),
+                            Date == "25 February 2022" ~ as.Date("02/25/2022", format='%m/%d/%Y')))
 ```
 
 ```{r}
@@ -38,5 +39,6 @@ ggplot +
   geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 2)+
   theme_clean(base_size =14)
   ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 21, height = 7)
+  
 ```
 
