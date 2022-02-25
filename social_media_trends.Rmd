@@ -35,10 +35,12 @@ scl.sm<-scl.sm %>%
 ```{r}
 scl.sm %>% 
 ggplot +
-  geom_point(aes(asdate, Followers, color = Platform), size = 5)+
-  geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 2)+
-  theme_clean(base_size =14)
-  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 21, height = 7)
+  geom_point(aes(asdate, Followers, color = Platform), size = 4)+
+  geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 1, linetype = "dashed")+
+  scale_x_date(date_breaks = "3 month", "Month Start")+
+  scale_y_continuous(breaks = c(0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000))+
+  theme_clean(base_size =14)+
+  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 20, height = 10)
   
 ```
 
