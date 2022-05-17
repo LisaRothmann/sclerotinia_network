@@ -29,7 +29,8 @@ scl.sm<-scl.sm %>%
                             Date == "24 February 2021" ~ as.Date("02/24/2021", format='%m/%d/%Y'),
                             Date == "25 May 2021" ~ as.Date("05/25/2021", format='%m/%d/%Y'),
                             Date == "24 August 2021" ~ as.Date("08/24/2021", format='%m/%d/%Y'),
-                            Date == "25 February 2022" ~ as.Date("02/25/2022", format='%m/%d/%Y')))
+                            Date == "25 February 2022" ~ as.Date("02/25/2022", format='%m/%d/%Y'),
+                            Date == "17 May 2022" ~ as.Date("05/17/2022", format='%m/%d/%Y')))
 ```
 
 ```{r}
@@ -40,7 +41,7 @@ ggplot +
   scale_x_date(date_breaks = "3 month", "Month Start")+
   scale_y_continuous(breaks = c(0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000))+
   theme_clean(base_size =14)+
-  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 20, height = 10)
+  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 25, height = 10)
   
 ```
 
