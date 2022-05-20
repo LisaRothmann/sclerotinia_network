@@ -9,12 +9,13 @@ output: word_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#library
+# library
+These are the libraries i use to import my data and organise the information as well as plot the graphs 
 
 ```{r}
-library(tidyverse)
-library(gsheet)
-library(ggthemes)
+library(tidyverse) #import, tidy, model 
+library(gsheet) #import 
+library(ggthemes) #plot themes
 ```
 
 # data
@@ -33,6 +34,7 @@ scl.sm<-scl.sm %>%
                             Date == "17 May 2022" ~ as.Date("05/17/2022", format='%m/%d/%Y')))
 ```
 
+## SOCIAL MEDIA PLOT 
 ```{r}
 scl.sm %>% 
 ggplot +
