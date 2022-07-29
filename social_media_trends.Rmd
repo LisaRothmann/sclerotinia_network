@@ -22,7 +22,7 @@ library(ggthemes) #plot themes
 ```{r}
 scl.sm <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1-bCNbueVD-9tLurdJAHW-SkV3slUs3ash4tXenhY-Zc/edit?usp=sharing")
 
-scl.sm<-scl.sm %>% 
+scl.sm <- scl.sm %>% 
   mutate(asdate = case_when(
                             Date == "18 August 2020" ~ as.Date("08/18/2020", format='%m/%d/%Y'),
                             Date == "10 September 2020" ~ as.Date("09/10/2020", format='%m/%d/%Y'),
@@ -31,7 +31,8 @@ scl.sm<-scl.sm %>%
                             Date == "25 May 2021" ~ as.Date("05/25/2021", format='%m/%d/%Y'),
                             Date == "24 August 2021" ~ as.Date("08/24/2021", format='%m/%d/%Y'),
                             Date == "25 February 2022" ~ as.Date("02/25/2022", format='%m/%d/%Y'),
-                            Date == "17 May 2022" ~ as.Date("05/17/2022", format='%m/%d/%Y')))
+                            Date == "17 May 2022" ~ as.Date("05/17/2022", format='%m/%d/%Y'),
+                            Date == "29 July 2022" ~ as.Date("07/29/2022", format='%m/%d/%Y')))
 ```
 
 ## SOCIAL MEDIA PLOT 
