@@ -22,7 +22,7 @@ library(ggthemes) #plot themes
 ```{r}
 scl.sm <- gsheet2tbl("https://docs.google.com/spreadsheets/d/1-bCNbueVD-9tLurdJAHW-SkV3slUs3ash4tXenhY-Zc/edit?usp=sharing")
 
-scl.sm <- scl.sm %>% 
+scl.sm<-scl.sm %>% 
   mutate(asdate = case_when(
                             Date == "18 August 2020" ~ as.Date("08/18/2020", format='%m/%d/%Y'),
                             Date == "10 September 2020" ~ as.Date("09/10/2020", format='%m/%d/%Y'),
@@ -32,7 +32,8 @@ scl.sm <- scl.sm %>%
                             Date == "24 August 2021" ~ as.Date("08/24/2021", format='%m/%d/%Y'),
                             Date == "25 February 2022" ~ as.Date("02/25/2022", format='%m/%d/%Y'),
                             Date == "17 May 2022" ~ as.Date("05/17/2022", format='%m/%d/%Y'),
-                            Date == "29 July 2022" ~ as.Date("07/29/2022", format='%m/%d/%Y')))
+                            Date == "29 July 2022" ~ as.Date("07/29/2022", format='%m/%d/%Y'),
+                            Date == "7 March 2023" ~ as.Date("03/07/2023", format='%m/%d/%Y')))
 ```
 
 ## SOCIAL MEDIA PLOT 
@@ -42,9 +43,9 @@ ggplot +
   geom_point(aes(asdate, Followers, color = Platform), size = 4)+
   geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 1, linetype = "dashed")+
   scale_x_date(date_breaks = "3 month", "Month Start")+
-  scale_y_continuous(breaks = c(0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000))+
-  theme_clean(base_size =14)+
-  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 25, height = 10)
+  scale_y_continuous(breaks = c(0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200))+
+  theme_clean(base_size =14)
+  ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 30, height = 15)
   
 ```
 
