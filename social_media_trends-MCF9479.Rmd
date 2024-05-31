@@ -37,17 +37,17 @@ scl.sm <- scl.sm %>%
                             Date == "30 July 2023" ~ as.Date("07/30/2023", format='%m/%d/%Y'),
                             Date == "26 August 2023" ~ as.Date("08/26/2023", format='%m/%d/%Y'),
                             Date == "1 November 2023" ~ as.Date("11/01/2023", format='%m/%d/%Y'),
-                            Date == "1 March 2024" ~ as.Date("03/01/2024", format='%m/%d/%Y')))
+                            Date == "1 March 2024" ~ as.Date("03/01/2024", format='%m/%d/%Y'),
+                            Date == "31 May 2024" ~ as.Date("05/31/2024", format='%m/%d/%Y')))
 ```
 
 ## SOCIAL MEDIA PLOT 
 ```{r}
-scl.sm %>% 
-  filter(asdate > "2021-08-24") %>% 
+scl.sm  %>% 
 ggplot +
   geom_point(aes(asdate, Followers, color = Platform), size = 4)+
   geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 1, linetype = "dashed")+
-  scale_x_date(date_breaks = "3 month", "Month End")+
+  scale_x_date(date_breaks = "6 month", "Month End")+
   scale_y_continuous(breaks = c(0, 200, 400, 600, 800,  1000, 1200, 1400))+
   theme_clean(base_size =14)+
   labs(x = "Year")
