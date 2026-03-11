@@ -39,7 +39,12 @@ scl.sm <- scl.sm %>%
                             Date == "1 November 2023" ~ as.Date("11/01/2023", format='%m/%d/%Y'),
                             Date == "1 March 2024" ~ as.Date("03/01/2024", format='%m/%d/%Y'),
                             Date == "31 May 2024" ~ as.Date("05/31/2024", format='%m/%d/%Y'),
-                            Date == "28 August 2024" ~ as.Date("08/28/2024", format='%m/%d/%Y')))
+                            Date == "28 August 2024" ~ as.Date("08/28/2024", format='%m/%d/%Y'),
+                            Date == "11 November 2024" ~ as.Date("11/11/2024", format='%m/%d/%Y'),
+                            Date == "01 March 2025" ~ as.Date("03/01/2025", format = '%m/%d/%Y'),
+                            Date == "13 June 2025" ~ as.Date("06/13/2025", format = '%m/%d/%Y'),
+                            Date == "30 August 2025" ~ as.Date("08/30/2025", format = '%m/%d/%Y'),
+                            Date == "14 November 2025" ~ as.Date("11/14/2025", format = '%m/%d/%Y')))
 ```
 
 ## SOCIAL MEDIA PLOT 
@@ -48,11 +53,46 @@ scl.sm  %>%
 ggplot +
   geom_point(aes(asdate, Followers, color = Platform), size = 4)+
   geom_line(aes(asdate, Followers, color = Platform, group = Platform), size = 1, linetype = "dashed")+
-  scale_x_date(date_breaks = "4 month", "Month End")+
+  scale_x_date(date_breaks = "6 month", "Month")+
   scale_y_continuous(breaks = c(0, 200, 400, 600, 800,  1000, 1200, 1400, 1600))+
-  theme_clean(base_size =24)+
+  theme_clean(base_size =30)+
   labs(x = "Year")
   ggsave("logo/vis/sm_trends.jpeg", units = "cm", width = 60, height = 30)
   
+
+  
+  scl.sm %>%
+  ggplot(aes(x = asdate, y = Followers, color = Platform)) +
+  geom_line(aes(group = Platform), size = 1.2) +  # solid line for clarity
+  geom_point(size = 3, shape = 21, fill = "white", stroke = 1.2) +  # outlined points
+  scale_color_manual(values = c(
+    "Facebook" = "#4E79A7",
+    "Instagram" = "#962fbf",
+    "X - formerly Twitter" = "#000000"
+  )) +
+  scale_x_date(
+    date_breaks = "6 months",
+    date_labels = "%Y-%m",
+    name = "Month"
+  ) +
+  scale_y_continuous(
+    limits = c(0, NA),
+    breaks = seq(0, 1600, by = 200),
+    expand = expansion(mult = c(0, 0.05))
+  ) +
+  theme_minimal(base_size = 18) +
+  theme(
+    legend.position = "right",
+    legend.title = element_text(face = "bold"),
+    panel.grid.minor = element_blank(),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  labs(
+    color = "Platform",
+    y = "Followers"
+  )
+  
+  ggsave("logo/vis/sm_trends_b.jpeg", units = "cm", width = 30, height = 15)
+
 ```
 
